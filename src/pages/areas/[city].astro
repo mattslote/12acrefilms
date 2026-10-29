@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { areas, areaBySlug, type Area } from '../../data/areas';
+import { bySlug } from '../../data/services';
+import site from '../../data/site.json';
+
+export function getStaticPaths() {
+  return areas.map((a) => ({ params: { city: a.slug }, props: { a } }));
+}
+const { a } = Astro.props as { a: Area };
+const home = a.drive === 'home base';
+const where = `${a.name}, ${a.state}`;
+const url = `https://www.12acrefilms.com/areas/${a.slug}`;
+const nearby = a.nearby.map((s) => areaBySlug[s]).filter(Boolean);
+const uses = a.uses.map(([s, t]) => ({ svc: bySlug[s], text: t })).filter((u) => u.svc);
+const list = (xs: string[]) => xs.length < 3 ? xs.join(' and ') : xs.slice(0, -1).join(', ') + ', and ' + xs[xs.length - 1];
+const faqs = [
+  a.localFaq,
+  { q: `What video services do you offer in ${a.name}?`, a: `In ${a.name} we produce ${uses.map((u) => u.svc.name.toLowerCase()).join(', ')}, and more. See the full list of services on our services page.` },
+  { q: `How do I get a quote for a project in ${a.name}?`, a: `Send a short description through our contact page or call ${site.phone}. We reply with questions and a written quote.` },
+];
+const title = `Video Production & Live Streaming in ${where}`;
+const description = `12 Acre Films provides video production, live streaming, and drone video in ${where}. Call ${site.phone}.`;
+const schema = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service', name: `Video production in ${where}`, url,
+    provider: { '@type': 'LocalBusiness', name: '12 Acre Films', url: 'https://www.12acrefilms.com', telephone: site.phone, address: { '@type': 'PostalAddress', addressLocality: 'Spokane', addressRegion: 'WA', addressCountry: 'US' } },
+    areaServed: { '@type': 'City', name: a.name, containedInPlace: { '@type': 'AdministrativeArea', name: a.county } },
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.12acrefilms.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Areas we serve', item: 'https://www.12acrefilms.com/areas' },
+    { '@type': 'ListItem', position: 3, name: a.name, item: url },
+  ] },
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Areas we serve', href: '/areas' }, { label: a.name }]} />
+  <section class="hero" style="padding-top:70px">
+    <div class="wrap">
+      <p class="eyebrow">{a.region} · {a.county}, {a.state}</p>
+      <h1>Video production &amp; live streaming in {a.name}, {a.state}</h1>
+      <p class="lead">{a.intro}</p>
+      <div class="actions">
+        <a class="btn" href="/contact">Get a quote for {a.name}</a>
+        <a class="btn ghost" href={`tel:${site.phoneHref}`}>Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:88px">
+    <div class="wrap narrow prose">
+      <h2>What we make in {a.name}</h2>
+      <p>{a.name} has a local economy built around {list(a.sectors)}. Here is how our work usually fits:</p>
+      <ul>
+        {uses.map((u) => <li><a href={`/${u.svc.slug}`}>{u.svc.name}</a>: {u.text}</li>)}
+      </ul>
+
+      <h2 style="margin-top:48px">Places and events we plan around in {a.name}</h2>
+      <p>Knowing the room matters for lighting, audio, and internet. These are some of the places and organizations in and around {a.name} that come up in projects like ours:</p>
+      <ul>{a.places.map((p) => <li>{p}</li>)}</ul>
+      <p>Local events that often call for video or live streaming include {list(a.events)}.</p>
+
+      <h2 style="margin-top:48px">Working with us in {a.name}</h2>
+      <p>Not sure what your project needs? <a href="/contact">Tell us about it</a> and we will tell you honestly. You can also browse our <a href="/services">full list of services</a> or learn <a href="/about">who we are</a>.</p>
+
+      <h2 style="margin-top:48px">Near {a.name}</h2>
+      <p>We also serve {nearby.map((n, i) => <span><a href={`/areas/${n.slug}`}>{n.name}</a>{i < nearby.length - 1 ? ', ' : ''}</span>)}, and the rest of the <a href="/areas">Inland Northwest</a>.</p>
+    </div>
+  </section>
+
+  <section id="faq" style="background:var(--surface);border-block:1px solid var(--line)">
+    <div class="wrap narrow">
+      <h2>Frequently asked questions</h2>
+      {faqs.map((f) => (
+        <details style="border-bottom:1px solid var(--line);padding:14px 0">
+          <summary style="cursor:pointer;font-weight:600">{f.q}</summary>
+          <p class="muted" style="margin:10px 0 0">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section style="text-align:center">
+    <div class="wrap narrow">
+      <h2>Planning a project in {a.name}?</h2>
+      <p class="muted">Tell us what you have in mind and we will reply with questions and a quote.</p>
+      <p><a class="btn" href="/contact">Get a quote</a></p>
+    </div>
+  </section>
+</Base>

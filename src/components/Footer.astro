@@ -1,0 +1,53 @@
+---
+import site from '../data/site.json';
+import { services, audiences, formats } from '../data/services';
+import { areas } from '../data/areas';
+const year = new Date().getFullYear();
+const main = services.filter((s) => s.slug !== 'archival-media-digitization');
+const digitizing = services.filter((s) => s.slug === 'archival-media-digitization');
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <strong style="color:var(--text)">{site.name}</strong><br />
+      Spokane, WA · Serving the Inland Northwest<br />
+      <a href={`mailto:${site.email}`}>{site.email}</a> · <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+    </div>
+    <div class="links">
+      <a href={site.instagram} rel="noopener">Instagram</a>
+      <a href={site.facebook} rel="noopener">Facebook</a>
+      <a href="/featured-on">Featured on</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+  <div class="wrap foot-menu">
+    <details>
+      <summary>Services</summary>
+      <ul>
+        {main.map((s) => <li><a href={`/${s.slug}`}>{s.name}</a></li>)}
+        <li><a href="/services">All services</a></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Digitizing</summary>
+      <ul>
+        {digitizing.map((s) => <li><a href={`/${s.slug}`}>{s.name}</a></li>)}
+        {formats.map((s) => <li><a href={`/${s.slug}`}>{s.name}</a></li>)}
+      </ul>
+    </details>
+    <details>
+      <summary>Who we work with</summary>
+      <ul>
+        {audiences.map((s) => <li><a href={`/${s.slug}`}>{s.name}</a></li>)}
+      </ul>
+    </details>
+    <details>
+      <summary>Areas we serve</summary>
+      <ul>
+        {areas.map((a) => <li><a href={`/areas/${a.slug}`}>{a.name}, {a.state}</a></li>)}
+        <li><a href="/areas">All areas</a></li>
+      </ul>
+    </details>
+  </div>
+  <div class="wrap copy">© {year} {site.name}</div>
+</footer>

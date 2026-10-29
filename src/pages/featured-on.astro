@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Outside sites that list and link to 12acrefilms.com.
+// To add one, add an object to this array.
+const features = [
+  {
+    site: 'SetHero',
+    title: 'Top 25 Video Production Companies in Spokane, Washington',
+    url: 'https://sethero.com/video-companies/spokane-wa',
+    note: 'SetHero\'s directory of video production companies in and around Spokane. 12 Acre Films is a verified listing.',
+  },
+];
+---
+<Base
+  title="Featured On"
+  description="Directories and sites that list and link to 12 Acre Films, a Spokane, WA video production company."
+>
+  <section>
+    <div class="wrap narrow prose">
+      <p class="eyebrow">Featured on</p>
+      <h1>Around the web</h1>
+      <p class="muted">Other sites that list and link to 12 Acre Films.</p>
+      <ul style="list-style:none;padding:0;margin-top:32px">
+        {features.map((f) => (
+          <li style="padding:24px 0;border-top:1px solid var(--line, rgba(128,128,128,.25))">
+            <div class="eyebrow">{f.site}</div>
+            <h3 style="margin:4px 0 8px">{f.title}</h3>
+            <p>{f.note}</p>
+            <a class="btn" href={f.url} target="_blank" rel="noopener">View listing</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

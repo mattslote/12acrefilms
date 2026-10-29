@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+import Header from '../components/Header.astro';
+import ContactModal from '../components/ContactModal.astro';
+import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  schema?: object[];
+}
+const { title, description = site.description, image, schema = [] } = Astro.props;
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.name,
+  description: site.description,
+  url: 'https://www.12acrefilms.com',
+  telephone: site.phone,
+  email: site.email,
+  areaServed: ['Spokane', 'Spokane Valley', 'Liberty Lake', "Coeur d'Alene", 'Cheney', 'Pullman', 'Moscow', 'Tri-Cities', 'Yakima', 'Missoula'],
+  address: { '@type': 'PostalAddress', addressLocality: 'Spokane', addressRegion: 'WA', addressCountry: 'US' },
+  sameAs: [site.instagram, site.facebook],
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <Analytics />
+  </head>
+  <body style={`--hero-img:url('${site.heroImage}')`} class={['/', '/index', '/index.html'].includes(Astro.url.pathname) ? 'home' : undefined}>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header current={Astro.url.pathname} />
+    <main id="main"><slot /></main>
+    {!['/contact','/404'].includes(Astro.url.pathname.replace(/\/$/, '')) && (
+      <section class="bottom-cta">
+        <div class="wrap narrow">
+          <h2>Ready to talk about your project?</h2>
+          <p class="muted">Tell me what you are trying to accomplish and I will get back to you.</p>
+          <button type="button" class="btn contact-open">Contact us</button>
+        </div>
+      </section>
+    )}
+    <Footer />
+    <ContactModal />
+  </body>
+</html>

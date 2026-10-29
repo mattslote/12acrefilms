@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import images from '../data/gallery.json';
+---
+<Base title="Gallery" description="Stills, aerial and product photography from 12 Acre Films productions in Spokane, WA.">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Gallery</p>
+      <h1>Frames from the field</h1>
+      <div class="masonry" style="margin-top:36px">
+        {images.map((src, i) => (
+          <button type="button" data-src={src} aria-label={`Open photo ${i + 1}`}>
+            <img src={src} alt={`12 Acre Films still ${i + 1}`} loading="lazy" />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+  <dialog class="lightbox" id="lb" aria-label="Photo viewer"><img id="lb-img" alt="" /></dialog>
+</Base>
+
+<script>
+  const lb = document.getElementById('lb') as HTMLDialogElement;
+  const img = document.getElementById('lb-img') as HTMLImageElement;
+  document.querySelectorAll<HTMLButtonElement>('.masonry button').forEach((b) =>
+    b.addEventListener('click', () => {
+      img.src = b.dataset.src!;
+      lb.showModal();
+    }),
+  );
+  lb.addEventListener('click', () => lb.close());
+</script>

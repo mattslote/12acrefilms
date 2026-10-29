@@ -1,0 +1,21 @@
+---
+const { service = 'video production', simple = false } = Astro.props;
+const areas = [
+  'Spokane, WA', 'Spokane Valley, WA', 'Liberty Lake, WA', 'Cheney, WA', 'Airway Heights, WA', 'Mead and Mt. Spokane, WA',
+  "Coeur d'Alene, ID", 'Post Falls, ID', 'Hayden, ID', 'Sandpoint, ID',
+  'Pullman, WA', 'Moscow, ID', 'Lewiston and Clarkston', 'Colville, WA',
+  'Tri-Cities (Kennewick, Pasco, Richland), WA', 'Yakima, WA', 'Wenatchee, WA', 'Missoula, MT',
+];
+---
+{simple ? (
+  <p>Our operating area is the Inland Northwest. 12 Acre Films is based in Spokane, WA, and offers {service} across the region.</p>
+) : (
+<div>
+  <p>12 Acre Films is based in Spokane and provides {service} throughout the Inland Northwest, including:</p>
+  <ul style="columns:2 260px">
+    {areas.map((a) => <li>{a}</li>)}
+  </ul>
+  <p><a href="/areas">See every city we serve</a>: Spokane, North Idaho, the Palouse, the Tri-Cities, Yakima, Wenatchee, Walla Walla, and Missoula.</p>
+  <p class="muted">Don't see your town? Ask.</p>
+</div>
+)}

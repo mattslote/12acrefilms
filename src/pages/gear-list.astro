@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import gear from '../data/gear.json';
+
+const order = ['Cameras', 'Lenses', 'Lighting', 'Grip & Support', 'Audio', 'Teleprompter'];
+const groups = order.map((cat) => ({ cat, items: gear.filter((g) => g.category === cat) }));
+---
+<Base title="Gear List" description="Cameras, lenses, lighting, grip and audio gear owned by 12 Acre Films and available to rent in Spokane, WA.">
+  <section>
+    <div class="wrap narrow">
+      <p class="eyebrow">Gear list</p>
+      <h1>Gear owned and available to rent</h1>
+      <p class="muted">Search the kit or filter by category. Need something not listed? Ask — I can usually source it. This gear powers our <a href="/live-events">live streams</a>, <a href="/corporate-video-production">commercial video</a>, <a href="/podcast-video-recording">podcast recording</a>, and <a href="/gear-rental">gear rentals</a>, plus a <a href="/teleprompter-operator">teleprompter operator</a> when you need one.</p>
+
+      <input class="search" id="q" type="search" placeholder="Search gear (e.g. Panasonic, 85mm, wireless)…" aria-label="Search gear" style="margin-top:22px" />
+      <div class="filters" id="cats" role="group" aria-label="Filter by category">
+        <button class="chip" type="button" data-cat="" aria-pressed="true">All</button>
+        {order.map((c) => <button class="chip" type="button" data-cat={c} aria-pressed="false">{c}</button>)}
+      </div>
+      <p class="count" id="count" aria-live="polite"></p>
+
+      <div id="list">
+        {groups.map((g) => (
+          <div class="gear-cat" data-cat={g.cat}>
+            <h2>{g.cat}</h2>
+            <ul>
+              {g.items.map((i) => (
+                <li data-text={`${i.name} ${g.cat}`.toLowerCase()}>
+                  <span>{i.name}</span>
+                  {i.qty && <span class="qty">×{i.qty}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p id="empty" class="muted" hidden>Nothing matches that search.</p>
+      <p style="margin-top:36px"><a class="btn" href="/contact">Ask about a rental</a></p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const q = document.getElementById('q') as HTMLInputElement;
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('#cats .chip')];
+  const groups = [...document.querySelectorAll<HTMLElement>('.gear-cat')];
+  const count = document.getElementById('count')!;
+  const empty = document.getElementById('empty')!;
+  let cat = '';
+
+  function apply() {
+    const terms = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    let n = 0;
+    for (const g of groups) {
+      let any = false;
+      for (const li of g.querySelectorAll<HTMLElement>('li')) {
+        const text = li.dataset.text!;
+        const show = (!cat || g.dataset.cat === cat) && terms.every((t) => text.includes(t));
+        li.hidden = !show;
+        if (show) { any = true; n++; }
+      }
+      g.hidden = !any;
+    }
+    count.textContent = `${n} item${n === 1 ? '' : 's'}`;
+    empty.hidden = n > 0;
+  }
+  chips.forEach((b) =>
+    b.addEventListener('click', () => {
+      cat = b.dataset.cat!;
+      chips.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      apply();
+    }),
+  );
+  q.addEventListener('input', apply);
+  apply();
+</script>

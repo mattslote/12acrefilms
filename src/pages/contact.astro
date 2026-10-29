@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import ContactForm from '../components/ContactForm.astro';
+---
+<Base title="Contact" description="Contact Matt Slotemaker at 12 Acre Films in Spokane, WA for live events, commercial, documentary and social media video production.">
+  <section>
+    <div class="wrap narrow">
+      <p class="eyebrow">Contact</p>
+      <h1>Hit me up!</h1>
+      <p class="muted">One of my favorite parts of this job is getting to know other professionals and learning what makes them tick. Whether in person, over coffee, on Zoom, or by phone, I'm happy to spend a few minutes listening to what you're looking for. Go ahead and reach out. It'll make my day.</p>
+      <p>
+        <strong>Email</strong><br /><a href={`mailto:${site.email}`}>{site.email}</a><br /><br />
+        <strong>Phone</strong><br /><a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+      </p>
+
+      <h2 style="margin-top:48px">Request a quote</h2>
+      <p class="muted">Planning a <a href="/live-events">live event</a>, <a href="/funeral-live-streaming">funeral live stream</a>, <a href="/tv-commercial-production">commercial</a>, or <a href="/podcast-video-recording">podcast</a>? Mention it below, or call 509.339.5227.</p>
+      <ContactForm />
+    </div>
+  </section>
+</Base>

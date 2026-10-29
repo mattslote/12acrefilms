@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import projects from '../data/projects.json';
+import site from '../data/site.json';
+const showcase = (site as any).documentaryShowcase as string | undefined;
+const docs = projects.filter((p) => p.category === 'Documentary');
+---
+<Base
+  title="Documentary Filmmaking"
+  description="Spokane documentary video production: build your brand and increase engagement by sharing your personality and testimonials."
+>
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Documentaries</p>
+      <h1>Sometimes I pursue a story because it's too important <em>not</em> to tell</h1>
+      {showcase && (
+        <div style="margin-top:36px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#111">
+          <iframe src={showcase} title="12 Acre Films documentary showcase" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="display:block;width:100%;height:min(80vw,560px);border:0"></iframe>
+        </div>
+      )}
+      <div class="grid cols-3" style="margin-top:40px">
+        {docs.map((p) => (
+          <article class="card">
+            <img class="thumb" src={p.image} alt={p.title} loading="lazy" />
+            <div class="body">
+              <h3>{p.title}</h3>
+              <p class="muted">{p.summary}</p>
+              {p.watchUrl
+                ? <a href={p.watchUrl} rel="noopener">Watch →</a>
+                : <span class="muted">Series preview coming soon</span>}
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="muted" style="margin-top:40px">Documentary-style storytelling also powers our <a href="/interview-testimonial-video">interview and testimonial videos</a>, <a href="/nonprofit-fundraising-video">nonprofit films</a>, and <a href="/corporate-video-production">brand stories</a>. Working with archival footage or photographs? See <a href="/archival-media-digitization">archival media digitization</a>.</p>
+    </div>
+  </section>
+</Base>

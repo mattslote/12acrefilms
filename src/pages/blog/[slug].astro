@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import posts from '../../data/posts.json';
+
+export function getStaticPaths() {
+  return posts.filter((p) => p.body.length > 0).map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const inline = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\[([^\]]+)\]\(((?:\/|https:\/\/)[^)]*)\)/g, '<a href="$2">$1</a>');
+---
+<Base title={p.title} image={p.image || undefined}>
+  <section>
+    <div class="wrap narrow prose">
+      <p class="eyebrow"><a href="/blog" style="text-decoration:none">← Blog</a></p>
+      <h1>{p.title}</h1>
+      {p.image && <img src={p.image} alt="" style="border-radius:10px;margin:24px 0" />}
+      {p.body.map((para) => para.startsWith('## ') ? <h2 style="margin-top:1.6em">{para.slice(3)}</h2> : <p set:html={inline(para)} />)}
+    </div>
+  </section>
+</Base>

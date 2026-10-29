@@ -1,0 +1,174 @@
+[
+  {
+    "name": "Panasonic S5IIX",
+    "category": "Cameras"
+  },
+  {
+    "name": "Blackmagic URSA Mini Pro G2",
+    "category": "Cameras"
+  },
+  {
+    "name": "Panasonic GH5",
+    "category": "Cameras"
+  },
+  {
+    "name": "Panasonic GH5S",
+    "category": "Cameras"
+  },
+  {
+    "name": "Sony Z200",
+    "category": "Cameras"
+  },
+  {
+    "name": "Pictor 20-55mm T2.8",
+    "category": "Lenses"
+  },
+  {
+    "name": "Pictor 50-125mm T2.8",
+    "category": "Lenses"
+  },
+  {
+    "name": "Sigma 18-35mm f/1.8",
+    "category": "Lenses"
+  },
+  {
+    "name": "Canon 24-105mm f/4",
+    "category": "Lenses"
+  },
+  {
+    "name": "Canon 70-200mm f/2.8 IS II",
+    "category": "Lenses"
+  },
+  {
+    "name": "Rokinon 35mm Cine T1.5",
+    "category": "Lenses"
+  },
+  {
+    "name": "Rokinon 50mm Cine T1.5",
+    "category": "Lenses"
+  },
+  {
+    "name": "Rokinon 85mm Cine T1.5",
+    "category": "Lenses"
+  },
+  {
+    "name": "Rokinon 14mm f/2.8",
+    "category": "Lenses"
+  },
+  {
+    "name": "Aputure Storm 400x + Quickdome 90",
+    "category": "Lighting"
+  },
+  {
+    "name": "Hive Hornet 200XC wireless RGB + 24\" dome",
+    "category": "Lighting",
+    "qty": 2
+  },
+  {
+    "name": "KinoFlo Diva",
+    "category": "Lighting",
+    "qty": 2
+  },
+  {
+    "name": "GVM RGB LED panel",
+    "category": "Lighting",
+    "qty": 3
+  },
+  {
+    "name": "Dracast bicolor LED flood",
+    "category": "Lighting",
+    "qty": 2
+  },
+  {
+    "name": "4' dolly rails + fluid head",
+    "category": "Grip & Support"
+  },
+  {
+    "name": "Easy Rig",
+    "category": "Grip & Support"
+  },
+  {
+    "name": "ReadyRig",
+    "category": "Grip & Support"
+  },
+  {
+    "name": "DJI Ronin S",
+    "category": "Grip & Support"
+  },
+  {
+    "name": "Wireless video monitor",
+    "category": "Grip & Support"
+  },
+  {
+    "name": "Manfrotto 500 series tripod",
+    "category": "Grip & Support",
+    "qty": 3
+  },
+  {
+    "name": "SmallRig travel tripod",
+    "category": "Grip & Support"
+  },
+  {
+    "name": "6\" C-stand",
+    "category": "Grip & Support",
+    "qty": 4
+  },
+  {
+    "name": "11' C-stand",
+    "category": "Grip & Support",
+    "qty": 4
+  },
+  {
+    "name": "8' light stand",
+    "category": "Grip & Support",
+    "qty": 4
+  },
+  {
+    "name": "5' light stand",
+    "category": "Grip & Support",
+    "qty": 6
+  },
+  {
+    "name": "C-stand arm",
+    "category": "Grip & Support",
+    "qty": 8
+  },
+  {
+    "name": "RODE Wireless Pro kit",
+    "category": "Audio",
+    "qty": 2
+  },
+  {
+    "name": "Zoom H8",
+    "category": "Audio"
+  },
+  {
+    "name": "Shure MV7 podcast/studio mic",
+    "category": "Audio",
+    "qty": 3
+  },
+  {
+    "name": "Sennheiser G3 wireless lav + handheld",
+    "category": "Audio"
+  },
+  {
+    "name": "RODE handheld lav holders",
+    "category": "Audio"
+  },
+  {
+    "name": "Sennheiser shotgun mic (short)",
+    "category": "Audio"
+  },
+  {
+    "name": "Sennheiser shotgun mic + windscreen (long)",
+    "category": "Audio"
+  },
+  {
+    "name": "Boom pole + shock mount",
+    "category": "Audio"
+  },
+  {
+    "name": "17\" two-way mirror (beam-splitter) teleprompter",
+    "category": "Teleprompter"
+  }
+]

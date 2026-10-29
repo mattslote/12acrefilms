@@ -1,0 +1,14 @@
+---
+import ServicePage from '../components/ServicePage.astro';
+import { services, formats } from '../data/services';
+
+export function getStaticPaths() {
+  const hub = { label: 'Archival Media Digitization', href: '/archival-media-digitization' };
+  return [
+    ...services.map((s) => ({ params: { service: s.slug }, props: { s, parent: undefined } })),
+    ...formats.map((s) => ({ params: { service: s.slug }, props: { s, parent: hub } })),
+  ];
+}
+const { s, parent } = Astro.props;
+---
+{parent ? <ServicePage s={s} parent={parent} /> : <ServicePage s={s} />}

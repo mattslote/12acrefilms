@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { services, audiences, formats } from '../data/services';
+
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: '12 Acre Films services',
+  itemListElement: [...services, ...audiences, ...formats].map((s, i) => ({
+    '@type': 'ListItem', position: i + 1, name: s.name, url: `https://www.12acrefilms.com/${s.slug}`,
+  })),
+}];
+---
+<Base
+  title="Video Production Services in Spokane, WA"
+  description="Video production services from 12 Acre Films in Spokane, WA: live streaming, funeral live streaming, commercials, corporate video, nonprofit video, podcasts, radio ads, teleprompter operator and gear rental."
+  schema={schema}
+>
+  <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Services' }]} />
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h1>Video &amp; audio production services in Spokane</h1>
+      <p class="muted" style="max-width:680px">From live streams and funerals to commercials, podcasts, and radio, 12 Acre Films helps businesses, nonprofits, families, and organizations across the Inland Northwest tell their story.</p>
+      <div class="grid cols-3" style="margin-top:40px">
+        {services.map((s) => (
+          <a class="card" href={`/${s.slug}`} style="text-decoration:none">
+            <div class="body">
+              <h3>{s.name}</h3>
+              <p class="muted" style="margin:0 0 10px">{s.short}</p>
+              <span style="color:var(--accent)">Learn more →</span>
+            </div>
+          </a>
+        ))}
+        <a class="card" href="/documentary" style="text-decoration:none">
+          <div class="body">
+            <h3>Documentary Filmmaking</h3>
+            <p class="muted" style="margin:0 0 10px">Story-driven documentary work for brands, nonprofits, and passion projects.</p>
+            <span style="color:var(--accent)">Learn more →</span>
+          </div>
+        </a>
+      </div>
+
+      <h2 id="digitization" style="margin-top:72px">Digitize your archival media</h2>
+      <p class="muted" style="max-width:680px">Preserve VHS and U-matic tapes, photographs, slides, film, and discs as digital files.</p>
+      <div class="grid cols-3" style="margin-top:28px">
+        {formats.map((f) => (
+          <a class="card" href={`/${f.slug}`} style="text-decoration:none">
+            <div class="body">
+              <h3>{f.name}</h3>
+              <p class="muted" style="margin:0 0 10px">{f.short}</p>
+              <span style="color:var(--accent)">Learn more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <h2 id="audiences" style="margin-top:72px">Who we work with</h2>
+      <p class="muted" style="max-width:680px">Every organization needs something different. These pages explain how we work with each.</p>
+      <div class="grid cols-3" style="margin-top:28px">
+        {audiences.map((a) => (
+          <a class="card" href={`/${a.slug}`} style="text-decoration:none">
+            <div class="body">
+              <h3>{a.name}</h3>
+              <p class="muted" style="margin:0 0 10px">{a.short}</p>
+              <span style="color:var(--accent)">Learn more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

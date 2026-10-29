@@ -1,0 +1,10 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { audiences } from '../../data/services';
+
+export function getStaticPaths() {
+  return audiences.map((a) => ({ params: { audience: a.slug.replace('for/', '') }, props: { a } }));
+}
+const { a } = Astro.props;
+---
+<ServicePage s={a} parent={{ label: 'Who we work with', href: '/services#audiences' }} />

@@ -1,0 +1,40 @@
+---
+import site from '../data/site.json';
+import { audiences } from '../data/services';
+const { current = '/' } = Astro.props;
+const isCurrent = (href: string) => current === href || (href !== '/' && current.startsWith(href + '/'));
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="12 Acre Films home"><img src={['/', '/index', '/index.html'].includes(current) ? site.logo : (site as any).logoDark} alt="12 Acre Films" width="80" height="75" /></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" id="menu-btn">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      {site.nav.map((n) => (
+        <>
+          <a href={n.href} class={n.href === '/contact' ? 'nav-cta' : undefined} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
+          {n.href === '/services' && (
+            <div class="nav-drop">
+              <button type="button" class="nav-drop-btn" aria-expanded="false">Who we work with</button>
+              <div class="nav-drop-menu">
+                {audiences.map((a) => <a href={`/${a.slug}`}>{a.name}</a>)}
+              </div>
+            </div>
+          )}
+        </>
+      ))}
+    </nav>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const nav = document.getElementById('nav');
+  document.querySelectorAll('.nav-drop-btn').forEach((b) => b.addEventListener('click', () => {
+    const d = b.parentElement!;
+    const o = d.classList.toggle('open');
+    b.setAttribute('aria-expanded', String(o));
+  }));
+  btn?.addEventListener('click', () => {
+    const open = nav!.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>

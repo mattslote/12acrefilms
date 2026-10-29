@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import projects from '../../data/projects.json';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+---
+<Base title={p.title} description={p.summary} image={p.image}>
+  <section>
+    <div class="wrap narrow">
+      <p class="eyebrow"><a href="/work" style="text-decoration:none">← Work</a></p>
+      <h1>{p.title}</h1>
+      <p>
+        <span class="tag cat">{p.category}</span>
+        {p.tags.map((t) => <span class="tag">{t}</span>)}
+        {p.client && p.client !== 'Independent' && <span class="tag">{p.client}</span>}
+      </p>
+
+      {(p.muxEmbed || p.framerateEmbed) ? (
+        <div style="position:relative;aspect-ratio:16/9;margin:28px 0;border-radius:10px;overflow:hidden;background:#000">
+          <iframe src={p.muxEmbed || p.framerateEmbed} title={p.title} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+            style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        </div>
+      ) : (
+        <img src={p.image} alt={p.title} style="border-radius:10px;margin:28px 0" />
+      )}
+
+      <p class="muted" style="font-size:1.1rem">{p.summary}</p>
+      {!(p.muxEmbed || p.framerateEmbed) && p.watchUrl && <p><a class="btn" href={p.watchUrl} rel="noopener">Watch</a></p>}
+      <p style="margin-top:36px"><a class="btn ghost" href="/contact">Start your project</a></p>
+    </div>
+  </section>
+</Base>

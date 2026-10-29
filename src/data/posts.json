@@ -1,0 +1,43 @@
+[
+  {
+    "slug": "is-4k-actually-4k-the-answer-is-complicated",
+    "title": "When is 4K actually 4K?",
+    "date": "2022-09-12",
+    "image": "",
+    "body": [
+      "## 4k goes from unobtainium to the masses",
+      "Right around the time I graduated from WSU in 2008 a new company called RED was shaking up the film industry by selling a cinema camera that could record in 4k - with the promise of eventually creating a 4k camera for $4k. A promise that, as far as I know, hasn’t been kept.",
+      "But now, almost 15 years later, 4k has become ubiquitous - almost to the point of being meaningless. We have 4k recording in just about every smartphone sold, DSLRs, drones, and GoPros that even shoot at more than 5k. GoPro knockoff cameras, and even the knockoffs of the knockoffs (no really) shoot in 4k.",
+      "Fast forward to 2014 and Panasonic made the first 4k camera that a normie like me could afford called the GH4, which at the time was a bargain at $1700. Being able to “punch in” was a revelation. Basically it was like having 2 cameras in one, because you could reframe* after the shoot to pick the composition you want. And if you need to cut out something? Just punch in**! The possibilities were endless.",
+      "*assuming the edit is in a 1080x1920 timeline or smaller",
+      "**use a digital zoom to cover an edit",
+      "But some folks with technical knowledge were trying to rain on the parade by claiming the GH4 4k wasn’t real 4k. At the time I was like, “pfff. It says 4k. I can punch in and it looks great. The resolution matches. That’s pretty real to me.”",
+      "But the truth is in the real nitty-gritty details of how a camera records images. So if you’re into that kind of thing, keep reading or go Google it. I already got your click in my analytics and this explanation is almost guaranteed to not be the best version on the internet.",
+      "## 4:2:0 vs 4:2:2 vs 4:4:4 vs 4:4:4:4",
+      "Shooting video is basically the same as taking a photo, but much faster. 4k is roughly 8 megapixels, or 8 million pixels, and the camera has to record all that information 24 or 30 times every second. That’s a lot of work for what is basically a small battery-powered computer. So to help out, the cameras take some shortcuts.",
+      "One very common shortcut is for the camera to not bother recording all the color information from every pixel. Picture a square divided into 4 smaller squares. One of those squares gets to record their color, and the other 3 only record their luminance information - how bright they are - then repeat that about 2 million times. The camera then makes guesses on what’s in between the colored pixels and fills those gaps in for the other ~6 million spots. This is called 4:2:0 color subsampling. Basically every single chip or DSLR camera can record in this mode.",
+      "The next step up is 4:2:2 subsampling. This is a more professional feature, though much more common in newer consumer and prosumer cameras. The difference from 4:2:0 is that in the same 2x2 square, the color information is recorded for 2 of the pixels.",
+      "The next, highest, level of color subsampling is 4:4:4. As you might have guessed, every pixel gets to record color information. This can be captured by a single chip camera, or less common, a 3 chip camera. 3CMOS or 3CCD cameras were more popular early in the digital camera revolution as camcorders with non-interchangeable lenses. They’re still popular in sports and news, and I personally like them for live events. These cameras have a very precise glass prism that splits the light from the lens into 3 directions towards 3 sensors. Each sensor in this configuration records only one color: red, green, or blue. This means every pixel gets all the color information, resulting in a 4:4:4 image.",
+      "Finally 4:4:4:4 is the same as 4:4:4 with one useful difference in post-production, which is transparency. I don’t know of a camera that can record 4:4:4:4 because transparency is read as nothing, just transparent. When layering text or graphics over a video, this is a good way to add an animation over without having to digitally remove visual information, like with a color key or a luma key. Also if there is any blur or translucent part of the animation, this allows that to come through without artifacting.",
+      "## So is any of this real 4k? What is real 4k, anyway?",
+      "Probably 75% of the stuff I shoot is in 4:2:0. I consider it “real” 4k because I mostly use it as if it was 4k in the timeline. If I’m delivering an edit in 1080p, which I almost always do, I can punch in to 85%-90%, where going past 100% would be a visible loss of quality. But when I go past 90% I can kinda start telling the image isn’t perfect.",
+      "Image noise, for example, is more prominent the more you zoom in. This is natural in all cameras, but when the cameras are guessing about what colors go in the gaps, the noise is more obvious the more you punch in.",
+      "If the final product is going to be delivered in resolutions over 1080p, or on a big screen - basically anything more advanced than streaming on social media, then it’s best to record in at least 4:2:2. Also if there’s any green screen or keying in post, then at least 4:2:2 is essential.",
+      "So the answer to the question above is: it depends. Which, I kinda hate saying because it’s the classic non-answer. But I don’t have a better one! So that’s where I’ll leave it.",
+      "Got any questions about this or other aspects of video production? [Reach out](/contact)! Happy to share my thoughts."
+    ]
+  },
+  {
+    "slug": "tedx",
+    "title": "TEDx Spokane",
+    "date": "2022-02-04",
+    "image": "https://images.squarespace-cdn.com/content/v1/60b7135b5002de3d347795da/1644007970619-Q1I4CI2N2XEFTJFDI1OJ/TEDx.jpg",
+    "body": [
+      "One of the highlights of my year is the annual TEDx Spokane event. We get to film a group of fantastic speakers share their big ideas with an engaging, curious crowd.",
+      "There are 2 elements to this: the live stream and the edit.",
+      "The live stream is what people who aren’t in the venue get to experience. We have 5 cameras running all around the room to capture all the angles and reactions. (Learn more about our [live streaming and live event production](/live-events).)",
+      "The edit is what we deliver to TED National. We record every angle, then edit each talk into its own video, which is reviewed and sent out.",
+      "They’re different products, and the final results are different as well. You can see the latest TEDx Spokane talks [here](https://www.youtube.com/user/TEDxTalks/search?query=Spokane)."
+    ]
+  }
+]

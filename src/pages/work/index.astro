@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import projects from '../../data/projects.json';
+const categories = [...new Set(projects.map((p) => p.category))].sort();
+const clients = [...new Set(projects.map((p) => p.client))].sort();
+---
+<Base title="Work" description="Commercial, nonprofit and documentary video projects by 12 Acre Films in Spokane, WA.">
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Work</p>
+      <h1>Every client is different</h1>
+      <p class="muted narrow" style="max-width:640px">A range of the work I've done. If you see something you like, great — let's make it work for you. If you want something else, let me help you make that idea a reality.</p>
+
+      <input class="search" id="q" type="search" placeholder="Search projects, clients, tags…" aria-label="Search projects" style="margin-top:30px" />
+      <div class="filters" id="cats" role="group" aria-label="Filter by category">
+        <button class="chip" type="button" data-cat="" aria-pressed="true">All</button>
+        {categories.map((c) => <button class="chip" type="button" data-cat={c} aria-pressed="false">{c}</button>)}
+      </div>
+      {clients.length > 1 && (
+        <label style="max-width:280px;margin-bottom:26px">Client
+          <select id="client">
+            <option value="">All clients</option>
+            {clients.map((c) => <option value={c}>{c}</option>)}
+          </select>
+        </label>
+      )}
+      <p class="count" id="count" aria-live="polite"></p>
+
+      <div class="grid cols-3" id="grid">
+        {projects.map((p) => (
+          <a class="card" href={`/work/${p.slug}`} style="text-decoration:none"
+             data-cat={p.category} data-client={p.client}
+             data-text={[p.title, p.client, p.category, p.summary, ...p.tags].join(' ').toLowerCase()}>
+            <img class="thumb" src={p.image} alt={p.title} loading="lazy" />
+            <div class="body">
+              <span class="tag cat">{p.category}</span>
+              {p.tags.slice(0, 2).map((t) => <span class="tag">{t}</span>)}
+              <h3>{p.title}</h3>
+              <p class="muted" style="margin:0">{p.summary}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p id="empty" class="muted" hidden>No projects match those filters.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const q = document.getElementById('q') as HTMLInputElement;
+  const clientSel = document.getElementById('client') as HTMLSelectElement | null;
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('#cats .chip')];
+  const cards = [...document.querySelectorAll<HTMLElement>('#grid .card')];
+  const count = document.getElementById('count')!;
+  const empty = document.getElementById('empty')!;
+  let cat = '';
+
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    const client = clientSel?.value ?? '';
+    let n = 0;
+    for (const c of cards) {
+      const show =
+        (!cat || c.dataset.cat === cat) &&
+        (!client || c.dataset.client === client) &&
+        (!term || c.dataset.text!.includes(term));
+      c.hidden = !show;
+      if (show) n++;
+    }
+    count.textContent = `${n} project${n === 1 ? '' : 's'}`;
+    empty.hidden = n > 0;
+  }
+  chips.forEach((b) =>
+    b.addEventListener('click', () => {
+      cat = b.dataset.cat!;
+      chips.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      apply();
+    }),
+  );
+  q.addEventListener('input', apply);
+  clientSel?.addEventListener('change', apply);
+  apply();
+</script>
