@@ -7,6 +7,16 @@ import site from '../data/site.json';
 const raw = ((site as any).showreelEmbed || '').trim();
 const showreel = raw.includes('<iframe') ? (raw.match(/src=["']([^"']+)["']/)?.[1] ?? '') : raw;
 const featured = projects.slice(0, 3);
+// Core services shown on the homepage, in this order. Everything else lives on /services.
+const coreServiceSlugs = [
+  'corporate-video-production',
+  'tv-commercial-production',
+  'nonprofit-fundraising-video',
+  'interview-testimonial-video',
+  'social-media-video',
+  'live-events',
+];
+const coreServices = coreServiceSlugs.map((slug) => services.find((sv) => sv.slug === slug)).filter(Boolean) as typeof services;
 const hero = (site as any).heroImage as string;
 const heroVideo = ((site as any).heroVideo || '') as string;
 const heroEmbed = ((site as any).heroEmbed || '') as string;
@@ -74,7 +84,7 @@ const clients = [
       <p class="eyebrow">What I do</p>
       <h2>Video &amp; audio production for the Inland Northwest</h2>
       <div class="grid cols-3" style="margin-top:28px">
-        {services.map((sv) => (
+        {coreServices.map((sv) => (
           <a class="card peek" href={`/${sv.slug}`} style="text-decoration:none">
             <div class="body">
               <h3>{sv.name}</h3>
