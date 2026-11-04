@@ -6,9 +6,8 @@ import { services, audiences, formats } from '../data/services';
 const pick = (slugs: string[]) => slugs.map((x) => services.find((s) => s.slug === x)).filter(Boolean) as typeof services;
 const documentary = { slug: 'documentary', name: 'Documentary Filmmaking', short: 'Story-driven documentary work for brands, nonprofits, and passion projects.' } as (typeof services)[number];
 const groups = [
-  { title: 'Live streaming', open: true, intro: 'Multi-camera live production for events, services, and funerals.', items: pick(['live-events', 'funeral-live-streaming']) },
   { title: 'Video production', open: true, intro: 'Commercials, corporate, nonprofit, social, and documentary storytelling.', items: [...pick(['corporate-video-production', 'tv-commercial-production', 'nonprofit-fundraising-video', 'interview-testimonial-video', 'social-media-video']), documentary, ...pick(['aerial-drone-video'])] },
-  { title: 'Audio & podcasts', open: false, intro: 'Podcast recording and radio advertising.', items: pick(['podcast-video-recording', 'radio-commercial-production']) },
+  { title: 'Live streaming & audio', open: true, intro: 'Multi-camera live production for events, services, and funerals, plus podcast recording and radio ads.', items: pick(['live-events', 'funeral-live-streaming', 'podcast-video-recording', 'radio-commercial-production']) },
   { title: 'Crew & gear', open: false, intro: 'Add a teleprompter operator or rent the gear we use on real shoots.', items: pick(['teleprompter-operator', 'gear-rental']) },
   { title: 'Digitize your archival media', open: false, intro: 'Preserve VHS and U-matic tapes, photographs, slides, film, and discs as digital files.', items: formats },
   { title: 'Who we work with', open: false, intro: 'Every organization needs something different. These pages explain how we work with each.', items: audiences },
