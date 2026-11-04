@@ -75,10 +75,10 @@ const clients = [
       <h2>Video &amp; audio production for the Inland Northwest</h2>
       <div class="grid cols-3" style="margin-top:28px">
         {services.map((sv) => (
-          <a class="card" href={`/${sv.slug}`} style="text-decoration:none">
+          <a class="card peek" href={`/${sv.slug}`} style="text-decoration:none">
             <div class="body">
               <h3>{sv.name}</h3>
-              <p class="muted" style="margin:0">{sv.short}</p>
+              <div class="peek-more"><div><p class="muted" style="margin:0">{sv.short}</p></div></div>
             </div>
           </a>
         ))}
@@ -88,10 +88,10 @@ const clients = [
       <h3 style="margin-top:56px">Made for your kind of organization</h3>
       <div class="grid cols-3" style="margin-top:18px">
         {audiences.map((a) => (
-          <a class="card" href={`/${a.slug}`} style="text-decoration:none">
+          <a class="card peek" href={`/${a.slug}`} style="text-decoration:none">
             <div class="body">
               <h3>{a.name}</h3>
-              <p class="muted" style="margin:0">{a.short}</p>
+              <div class="peek-more"><div><p class="muted" style="margin:0">{a.short}</p></div></div>
             </div>
           </a>
         ))}

@@ -196,3 +196,13 @@ dialog#contact-modal { border: 0; border-radius: 16px; padding: 32px 30px 28px; 
 dialog#contact-modal::backdrop { background: #000a; }
 dialog#contact-modal h2 { margin-top: 0; }
 .modal-close { position: absolute; top: 10px; right: 14px; background: none; border: 0; font-size: 2rem; line-height: 1; cursor: pointer; color: #555; }
+
+/* Collapsible cards: title only, description opens on hover / keyboard focus */
+.card.peek { align-self: start; transition: box-shadow .25s ease, border-color .25s ease; }
+.card.peek:hover, .card.peek:focus-visible { border-color: var(--accent); box-shadow: 0 8px 24px #0002; }
+.card.peek .peek-more { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .3s ease, opacity .3s ease; }
+.card.peek .peek-more > div { overflow: hidden; }
+.card.peek:hover .peek-more, .card.peek:focus-visible .peek-more { grid-template-rows: 1fr; opacity: 1; }
+.card.peek:hover h3, .card.peek:focus-visible h3 { color: var(--accent); }
+@media (hover: none) { .card.peek .peek-more { grid-template-rows: 1fr; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .card.peek, .card.peek .peek-more { transition: none; } }

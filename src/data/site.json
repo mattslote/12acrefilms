@@ -48,8 +48,8 @@
   "logo": "/img/logo-white.png",
   "heroImage": "https://image.mux.com/DWKwrRmSz9WD653lUWS022bCrwfKY9VJm6fuNSD4lKFE/thumbnail.jpg?width=1920&quality=80&time=0",
   "heroVideo": "",
-  "introImage": "https://images.squarespace-cdn.com/content/v1/60b7135b5002de3d347795da/5b3c77ff-a371-4035-875a-d81a54349449/Joe.jpg?format=1500w",
-  "bandImage": "https://images.squarespace-cdn.com/content/v1/60b7135b5002de3d347795da/8930875c-96e9-478c-bca8-e9b83471ddf5/Trent.jpg?format=2500w",
+  "introImage": "/img/sq/joe-a0013a4d.webp",
+  "bandImage": "/img/sq/trent-2ae4045b.webp",
   "heroEmbed": "https://framerate.tv/embed/ba21a8cf-3ea2-4bab-bd4c-21d701534c6f?primary_color=%23ffffff&track_color=%23ffffff&theme=minimal&autoplay=1&muted=1&loop=1&controls=0",
   "logoDark": "/img/logo-dark.png"
 }
