@@ -3,6 +3,16 @@ import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { services, audiences, formats } from '../data/services';
 
+const pick = (slugs: string[]) => slugs.map((x) => services.find((s) => s.slug === x)).filter(Boolean) as typeof services;
+const documentary = { slug: 'documentary', name: 'Documentary Filmmaking', short: 'Story-driven documentary work for brands, nonprofits, and passion projects.' } as (typeof services)[number];
+const groups = [
+  { title: 'Live streaming', open: true, intro: 'Multi-camera live production for events, services, and funerals.', items: pick(['live-events', 'funeral-live-streaming']) },
+  { title: 'Video production', open: true, intro: 'Commercials, corporate, nonprofit, social, and documentary storytelling.', items: [...pick(['corporate-video-production', 'tv-commercial-production', 'nonprofit-fundraising-video', 'interview-testimonial-video', 'social-media-video']), documentary, ...pick(['aerial-drone-video'])] },
+  { title: 'Audio & podcasts', open: false, intro: 'Podcast recording and radio advertising.', items: pick(['podcast-video-recording', 'radio-commercial-production']) },
+  { title: 'Crew & gear', open: false, intro: 'Add a teleprompter operator or rent the gear we use on real shoots.', items: pick(['teleprompter-operator', 'gear-rental']) },
+  { title: 'Digitize your archival media', open: false, intro: 'Preserve VHS and U-matic tapes, photographs, slides, film, and discs as digital files.', items: formats },
+  { title: 'Who we work with', open: false, intro: 'Every organization needs something different. These pages explain how we work with each.', items: audiences },
+];
 const schema = [{
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -23,52 +33,36 @@ const schema = [{
       <p class="eyebrow">Services</p>
       <h1>Video &amp; audio production services in Spokane</h1>
       <p class="muted" style="max-width:680px">From live streams and funerals to commercials, podcasts, and radio, 12 Acre Films helps businesses, nonprofits, families, and organizations across the Inland Northwest tell their story.</p>
-      <div class="grid cols-3" style="margin-top:40px">
-        {services.map((s) => (
-          <a class="card" href={`/${s.slug}`} style="text-decoration:none">
-            <div class="body">
-              <h3>{s.name}</h3>
-              <p class="muted" style="margin:0 0 10px">{s.short}</p>
-              <span style="color:var(--accent)">Learn more →</span>
+      <div class="svc-groups">
+        {groups.map((g) => (
+          <details class="svc-group" open={g.open}>
+            <summary><span>{g.title}</span><small>{g.items.length}</small></summary>
+            <p class="muted svc-intro">{g.intro}</p>
+            <div class="grid cols-3">
+              {g.items.map((s) => (
+                <a class="card" href={`/${s.slug}`} style="text-decoration:none">
+                  <div class="body">
+                    <h3>{s.name}</h3>
+                    <p class="muted" style="margin:0 0 10px">{s.short}</p>
+                    <span style="color:var(--accent)">Learn more →</span>
+                  </div>
+                </a>
+              ))}
             </div>
-          </a>
-        ))}
-        <a class="card" href="/documentary" style="text-decoration:none">
-          <div class="body">
-            <h3>Documentary Filmmaking</h3>
-            <p class="muted" style="margin:0 0 10px">Story-driven documentary work for brands, nonprofits, and passion projects.</p>
-            <span style="color:var(--accent)">Learn more →</span>
-          </div>
-        </a>
-      </div>
-
-      <h2 id="digitization" style="margin-top:72px">Digitize your archival media</h2>
-      <p class="muted" style="max-width:680px">Preserve VHS and U-matic tapes, photographs, slides, film, and discs as digital files.</p>
-      <div class="grid cols-3" style="margin-top:28px">
-        {formats.map((f) => (
-          <a class="card" href={`/${f.slug}`} style="text-decoration:none">
-            <div class="body">
-              <h3>{f.name}</h3>
-              <p class="muted" style="margin:0 0 10px">{f.short}</p>
-              <span style="color:var(--accent)">Learn more →</span>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      <h2 id="audiences" style="margin-top:72px">Who we work with</h2>
-      <p class="muted" style="max-width:680px">Every organization needs something different. These pages explain how we work with each.</p>
-      <div class="grid cols-3" style="margin-top:28px">
-        {audiences.map((a) => (
-          <a class="card" href={`/${a.slug}`} style="text-decoration:none">
-            <div class="body">
-              <h3>{a.name}</h3>
-              <p class="muted" style="margin:0 0 10px">{a.short}</p>
-              <span style="color:var(--accent)">Learn more →</span>
-            </div>
-          </a>
+          </details>
         ))}
       </div>
     </div>
   </section>
 </Base>
+<style>
+  .svc-groups { margin-top: 36px; display: grid; gap: 14px; }
+  .svc-group { border: 1px solid var(--line, #2a2a2a); border-radius: 10px; padding: 0 20px; }
+  .svc-group summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; font-size: 1.25rem; font-weight: 600; }
+  .svc-group summary::-webkit-details-marker { display: none; }
+  .svc-group summary small { font-size: .8rem; font-weight: 500; opacity: .6; margin-left: auto; margin-right: 14px; }
+  .svc-group summary::after { content: '+'; font-size: 1.5rem; line-height: 1; color: var(--accent); }
+  .svc-group[open] summary::after { content: '–'; }
+  .svc-group .svc-intro { margin: 0 0 20px; max-width: 680px; }
+  .svc-group .grid { padding-bottom: 24px; }
+</style>
