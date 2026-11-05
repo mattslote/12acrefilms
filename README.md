@@ -17,10 +17,7 @@ npm run deploy
 
 ## One-time setup before the form works in production
 1. **Email Routing**: Cloudflare dashboard → 12acrefilms.com → Email → Email Routing → enable, and verify the destination `matt@12acrefilms.com`. The Worker's `send_email` binding can only send to verified destinations.
-2. **Turnstile**: Dashboard → Turnstile → add widget for 12acrefilms.com.
-   - Put the site key in `.env` as `PUBLIC_TURNSTILE_SITEKEY=...` (then rebuild).
-   - Store the secret: `npx wrangler secret put TURNSTILE_SECRET`
-   - Until then the form uses Cloudflare's always-pass test key and skips the server check.
+2. **Spam protection**: the form uses a hidden honeypot field (`website`) only. Turnstile was removed; if spam becomes a problem, add Cloudflare Turnstile or a WAF rate-limiting rule on `/api/contact`.
 
 ## Editing content
 - `src/data/projects.json`: portfolio entries. Add `framerateEmbed` (the Framerate.tv embed/iframe URL) and the project page shows the player. `client`, `category`, and `tags` drive the filters.

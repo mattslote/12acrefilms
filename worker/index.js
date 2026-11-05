@@ -9,19 +9,6 @@ const json = (body, status = 200) =>
 
 const clean = (v, max = 2000) => String(v ?? '').trim().slice(0, max);
 
-async function verifyTurnstile(token, secret, ip) {
-  const form = new FormData();
-  form.append('secret', secret);
-  form.append('response', token);
-  if (ip) form.append('remoteip', ip);
-  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    body: form,
-  });
-  const data = await res.json();
-  return data.success === true;
-}
-
 async function handleContact(request, env) {
   let data;
   try {
@@ -44,15 +31,6 @@ async function handleContact(request, env) {
 
   if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !message) {
     return json({ error: 'Please include your name, a valid email, and a message.' }, 400);
-  }
-
-  if (env.TURNSTILE_SECRET) {
-    const ok = await verifyTurnstile(
-      clean(data.turnstileToken, 4096),
-      env.TURNSTILE_SECRET,
-      request.headers.get('CF-Connecting-IP'),
-    );
-    if (!ok) return json({ error: 'Spam check failed. Please try again.' }, 400);
   }
 
   const lines = [
