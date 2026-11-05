@@ -9,19 +9,6 @@ const json = (body, status = 200) =>
 
 const clean = (v, max = 2000) => String(v ?? '').trim().slice(0, max);
 
-async function verifyTurnstile(token, secret, ip) {
-  const form = new FormData();
-  form.append('secret', secret);
-  form.append('response', token);
-  if (ip) form.append('remoteip', ip);
-  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    body: form,
-  });
-  const data = await res.json();
-  return data.success === true;
-}
-
 async function handleContact(request, env) {
   let data;
   try {
@@ -46,15 +33,6 @@ async function handleContact(request, env) {
     return json({ error: 'Please include your name, a valid email, and a message.' }, 400);
   }
 
-  if (env.TURNSTILE_SECRET) {
-    const ok = await verifyTurnstile(
-      clean(data.turnstileToken, 4096),
-      env.TURNSTILE_SECRET,
-      request.headers.get('CF-Connecting-IP'),
-    );
-    if (!ok) return json({ error: 'Spam check failed. Please try again.' }, 400);
-  }
-
   const lines = [
     `Name: ${name}`,
     `Email: ${email}`,
@@ -77,7 +55,12 @@ async function handleContact(request, env) {
   try {
     await env.EMAIL.send(new EmailMessage(env.FROM_ADDRESS, env.TO_ADDRESS, msg.asRaw()));
   } catch (err) {
-    console.error('send_email failed', err);
+    console.error('send_email failed', JSON.stringify({
+      name: err?.name,
+      code: err?.code,
+      message: err?.message,
+      cause: err?.cause ? String(err.cause) : undefined,
+    }));
     return json({ error: 'Could not send your message. Please email matt@12acrefilms.com directly.' }, 502);
   }
   return json({ ok: true });

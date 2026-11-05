@@ -10,30 +10,6 @@ import ContactForm from './ContactForm.astro';
 <script>
   const modal = document.getElementById('contact-modal') as HTMLDialogElement | null;
   const w = window as any;
-  let tsLoading = false;
-
-  function loadTurnstile(cb: () => void) {
-    if (w.turnstile) return cb();
-    if (!tsLoading) {
-      tsLoading = true;
-      const s = document.createElement('script');
-      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-      s.async = true;
-      s.onload = () => w.__tsReady?.forEach((f: () => void) => f());
-      document.head.appendChild(s);
-    }
-    (w.__tsReady = w.__tsReady || []).push(cb);
-  }
-  function renderSlot(slot: HTMLElement) {
-    if (slot.dataset.rendered) return;
-    loadTurnstile(() => {
-      if (slot.dataset.rendered) return;
-      slot.dataset.rendered = String(w.turnstile.render(slot, { sitekey: slot.dataset.sitekey, theme: 'light' }));
-    });
-  }
-
-  // Inline page form (the /contact page) renders its widget right away.
-  document.querySelectorAll<HTMLElement>('main .ts-slot').forEach(renderSlot);
 
   // Open the popup instead of navigating to /contact
   const onContactPage = location.pathname.replace(/\/$/, '') === '/contact';
@@ -41,8 +17,6 @@ import ContactForm from './ContactForm.astro';
     if (!modal || onContactPage) return;
     e?.preventDefault();
     if (!modal.open) modal.showModal();
-    const slot = modal.querySelector<HTMLElement>('.ts-slot');
-    if (slot) renderSlot(slot);
     modal.querySelector<HTMLInputElement>('input[name=name]')?.focus();
     w.track12?.('contact_modal_open');
   }
@@ -62,8 +36,6 @@ import ContactForm from './ContactForm.astro';
       status.className = 'status';
       if (!form.checkValidity()) { form.reportValidity(); return; }
       const data: Record<string, any> = Object.fromEntries(new FormData(form));
-      data.turnstileToken = String(data['cf-turnstile-response'] ?? '');
-      delete data['cf-turnstile-response'];
       btn.disabled = true; btn.textContent = 'Sending…';
       try {
         const res = await fetch('/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
@@ -78,8 +50,6 @@ import ContactForm from './ContactForm.astro';
         status.textContent = (err as Error).message + ' You can also email matt@12acrefilms.com.';
       } finally {
         btn.disabled = false; btn.textContent = 'Send message';
-        const slot = form.querySelector<HTMLElement>('.ts-slot');
-        if (slot?.dataset.rendered && w.turnstile) w.turnstile.reset(slot.dataset.rendered);
       }
     });
   });
