@@ -55,7 +55,12 @@ async function handleContact(request, env) {
   try {
     await env.EMAIL.send(new EmailMessage(env.FROM_ADDRESS, env.TO_ADDRESS, msg.asRaw()));
   } catch (err) {
-    console.error('send_email failed', err);
+    console.error('send_email failed', JSON.stringify({
+      name: err?.name,
+      code: err?.code,
+      message: err?.message,
+      cause: err?.cause ? String(err.cause) : undefined,
+    }));
     return json({ error: 'Could not send your message. Please email matt@12acrefilms.com directly.' }, 502);
   }
   return json({ ok: true });
