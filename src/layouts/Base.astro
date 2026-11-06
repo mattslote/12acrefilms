@@ -14,7 +14,9 @@ interface Props {
 }
 const { title, description = site.description, image, schema = [] } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Spokane Videographer & Video Production Company`;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// build.format is 'file', so Astro.url.pathname can end in .html; the live URLs don't.
+const cleanPath = Astro.url.pathname.replace(/(^|\/)index\.html$/, '/').replace(/\.html$/, '');
+const canonical = new URL(cleanPath || '/', Astro.site).href;
 
 const ld = {
   '@context': 'https://schema.org',
