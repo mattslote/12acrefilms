@@ -41,6 +41,28 @@ const features = [
     note: 'Matt Slotemaker\'s member profile on the Spokane Film Project.',
   },
 ];
+
+// Articles Matt Slotemaker wrote for other sites.
+const contributions = [
+  {
+    site: 'Vexing Media blog · Sept 5, 2025',
+    title: 'Every Wieden Needs a Nike',
+    url: 'https://vexingmedia.com/articles/every-wieden-needs-a-nike/',
+    note: 'Why client trust lets a creative agency take bigger risks, and why that trust benefits its other clients too.',
+  },
+  {
+    site: 'Vexing Media blog · Aug 29, 2025',
+    title: 'Where the Hell is Matt',
+    url: 'https://vexingmedia.com/articles/where-the-hell-is-matt/',
+    note: 'How a viral dance video inspired a belief that video can connect people across cultural divides, and how that shapes the work.',
+  },
+  {
+    site: 'Vexing Media blog · Aug 22, 2025',
+    title: 'I\'m Greedy',
+    url: 'https://vexingmedia.com/articles/im-greedy/',
+    note: 'Tips for first-time client videos: why full-resolution files, the right location, and enough shoot time matter.',
+  },
+];
 ---
 <Base
   title="Featured On"
@@ -58,6 +80,19 @@ const features = [
             <h3 style="margin:4px 0 8px">{f.title}</h3>
             <p>{f.note}</p>
             <a class="btn" href={f.url} target="_blank" rel="noopener">View listing</a>
+          </li>
+        ))}
+      </ul>
+
+      <h2 style="margin-top:64px">Contributions</h2>
+      <p class="muted">Articles written by Matt Slotemaker for other sites.</p>
+      <ul style="list-style:none;padding:0;margin-top:32px">
+        {contributions.map((c) => (
+          <li style="padding:24px 0;border-top:1px solid var(--line, rgba(128,128,128,.25))">
+            <div class="eyebrow">{c.site}</div>
+            <h3 style="margin:4px 0 8px">{c.title}</h3>
+            <p>{c.note}</p>
+            <a class="btn" href={c.url} target="_blank" rel="noopener">Read article</a>
           </li>
         ))}
       </ul>
