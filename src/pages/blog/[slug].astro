@@ -1,19 +1,44 @@
 ---
 import Base from '../../layouts/Base.astro';
 import posts from '../../data/posts.json';
+import site from '../../data/site.json';
+import { dims } from '../../lib/imgDims';
 
 export function getStaticPaths() {
   return posts.filter((p) => p.body.length > 0).map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
+// Meta description: first real paragraph (skip headings and footnote lines), plain text, cut at a word boundary.
+const plain = (s: string) => s.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\s+/g, ' ').trim();
+const first = p.body.map(plain).find((t) => t && !t.startsWith('#') && !t.startsWith('*') && t.length > 60) ?? site.description;
+const description = first.length <= 158 ? first : first.slice(0, 157).replace(/\s+\S*$/, '') + '…';
+const url = `https://www.12acrefilms.com/blog/${p.slug}`;
+const schema = [
+  {
+    '@context': 'https://schema.org', '@type': 'BlogPosting',
+    headline: p.title, description, url, mainEntityOfPage: url,
+    datePublished: p.date, dateModified: p.date,
+    image: new URL(p.image || site.heroImage, Astro.site).href,
+    author: { '@type': 'Person', name: 'Matt Slotemaker', url: 'https://www.12acrefilms.com/about' },
+    publisher: { '@id': 'https://www.12acrefilms.com/#business' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.12acrefilms.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.12acrefilms.com/blog' },
+      { '@type': 'ListItem', position: 3, name: p.title, item: url },
+    ],
+  },
+];
 const inline = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\[([^\]]+)\]\(((?:\/|https:\/\/)[^)]*)\)/g, '<a href="$2">$1</a>');
 ---
-<Base title={p.title} image={p.image || undefined}>
+<Base title={p.title} description={description} image={p.image || undefined} ogType="article" publishedTime={p.date} schema={schema}>
   <section>
     <div class="wrap narrow prose">
       <p class="eyebrow"><a href="/blog" style="text-decoration:none">← Blog</a></p>
       <h1>{p.title}</h1>
-      {p.image && <img src={p.image} alt="" style="border-radius:10px;margin:24px 0" />}
+      {p.image && <img src={p.image} alt={p.title} {...dims(p.image)} fetchpriority="high" decoding="async" style="border-radius:10px;margin:24px 0" />}
       {p.body.map((para) => para.startsWith('## ') ? <h2 style="margin-top:1.6em">{para.slice(3)}</h2> : <p set:html={inline(para)} />)}
     </div>
   </section>

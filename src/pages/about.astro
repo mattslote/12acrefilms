@@ -1,7 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+const schema = [{
+  '@context': 'https://schema.org', '@type': 'AboutPage',
+  url: 'https://www.12acrefilms.com/about', name: 'About Matt Slotemaker',
+  mainEntity: {
+    '@type': 'Person', name: 'Matt Slotemaker', jobTitle: 'Owner and founder',
+    worksFor: { '@id': 'https://www.12acrefilms.com/#business' },
+    url: 'https://www.12acrefilms.com/about',
+  },
+}];
 ---
 <Base
+  schema={schema}
   title="About Matt Slotemaker"
   description="Matt Slotemaker is a Spokane, WA videographer and founder of 12 Acre Films, specializing in commercial, documentary, live events, and social media video production."
 >

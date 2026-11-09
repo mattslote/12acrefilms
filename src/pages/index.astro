@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import projects from '../data/projects.json';
 import { services, audiences } from '../data/services';
 import site from '../data/site.json';
+import { dims } from '../lib/imgDims';
 // Accepts either a bare embed URL or a pasted <iframe ...> snippet.
 const raw = ((site as any).showreelEmbed || '').trim();
 const showreel = raw.includes('<iframe') ? (raw.match(/src=["']([^"']+)["']/)?.[1] ?? '') : raw;
@@ -28,7 +29,13 @@ const clients = [
   'Community Colleges of Spokane', 'TEDx Spokane',
 ];
 ---
-<Base>
+<Base schema={[{
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  '@id': 'https://www.12acrefilms.com/#website', url: 'https://www.12acrefilms.com/', name: '12 Acre Films',
+  publisher: { '@id': 'https://www.12acrefilms.com/#business' },
+}]}>
+  <link slot="head" rel="preload" as="image" href={hero} fetchpriority="high" />
+  {heroEmbed && <link slot="head" rel="preconnect" href="https://framerate.tv" />}
   <section class="hero-home" style={`background-image:url('${hero}')`}>
     {heroEmbed && <iframe class="hero-embed" src={heroEmbed} title="12 Acre Films hero reel" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" id="hero-embed"></iframe>}
     {!heroEmbed && heroVideo && <video src={heroVideo} poster={hero} autoplay muted loop playsinline preload="metadata"></video>}
@@ -40,7 +47,7 @@ const clients = [
 
   <section class="band-grey">
     <div class="wrap split">
-      <img src={intro} alt="Interview subject sitting for a documentary-style portrait" loading="lazy" />
+      <img src={intro} alt="Interview subject sitting for a documentary-style portrait" {...dims(intro)} loading="lazy" decoding="async" />
       <div>
         <h2>Creating quality content starts with a conversation</h2>
         <p>Call me old-school, but I prefer to start a client relationship by talking about you, your business, your goals, and how I can help you get there.</p>
@@ -67,7 +74,7 @@ const clients = [
       <div class="grid cols-3">
         {featured.map((p) => (
           <a class="card" href={`/work/${p.slug}`} style="text-decoration:none">
-            <img class="thumb" src={p.image} alt={p.title} loading="lazy" />
+            <img class="thumb" src={p.image} alt={p.title} width="640" height="360" loading="lazy" decoding="async" />
             <div class="body">
               <span class="tag cat">{p.category}</span>
               <h3>{p.title}</h3>

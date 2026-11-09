@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",
     "astro": "^7.3.8",
+    "image-size": "^2.1.0",
     "mimetext": "^3.0.0"
   },
   "devDependencies": {

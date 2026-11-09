@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import images from '../data/gallery.json';
+import { dims } from '../lib/imgDims';
 ---
 <Base title="Gallery" description="Stills, aerial and product photography from 12 Acre Films productions in Spokane, WA.">
   <section>
@@ -10,7 +11,7 @@ import images from '../data/gallery.json';
       <div class="masonry" style="margin-top:36px">
         {images.map((src, i) => (
           <button type="button" data-src={src} aria-label={`Open photo ${i + 1}`}>
-            <img src={src} alt={`12 Acre Films still ${i + 1}`} loading="lazy" />
+            <img src={src} alt={`12 Acre Films still ${i + 1}`} {...dims(src)} loading="lazy" decoding="async" />
           </button>
         ))}
       </div>
