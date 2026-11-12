@@ -17,7 +17,7 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description = site.description, image, imageAlt, schema = [], ogType = 'website', publishedTime, noindex = false } = Astro.props;
-const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Spokane Videographer & Video Production Company`;
+const fullTitle = title ? `${title} | ${site.name}` : `Spokane Video Production Company | ${site.name}`;
 // build.format is 'file', so Astro.url.pathname can end in .html; the live URLs don't.
 const cleanPath = Astro.url.pathname.replace(/(^|\/)index\.html$/, '/').replace(/\.html$/, '');
 const canonical = new URL(cleanPath || '/', Astro.site).href;

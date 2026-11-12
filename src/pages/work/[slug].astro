@@ -31,7 +31,7 @@ if (embed && (p as any).uploadDate) {
   });
 }
 ---
-<Base title={p.title} description={description} image={p.image} schema={schema}>
+<Base title={(p as any).seoTitle ?? p.title} description={description} image={p.image} schema={schema}>
   <section>
     <div class="wrap narrow">
       <p class="eyebrow"><a href="/work" style="text-decoration:none">← Work</a></p>

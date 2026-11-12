@@ -33,7 +33,7 @@ const schema = [
 ];
 const inline = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\[([^\]]+)\]\(((?:\/|https:\/\/)[^)]*)\)/g, '<a href="$2">$1</a>');
 ---
-<Base title={p.title} description={description} image={p.image || undefined} ogType="article" publishedTime={p.date} schema={schema}>
+<Base title={(p as any).seoTitle ?? p.title} description={description} image={p.image || undefined} ogType="article" publishedTime={p.date} schema={schema}>
   <section>
     <div class="wrap narrow prose">
       <p class="eyebrow"><a href="/blog" style="text-decoration:none">← Blog</a></p>
