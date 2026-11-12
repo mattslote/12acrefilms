@@ -9,7 +9,7 @@ export function getStaticPaths() {
 const { p } = Astro.props;
 const url = `https://www.12acrefilms.com/work/${p.slug}`;
 // Some summaries are one short line; pad to a useful snippet length.
-const description = p.summary.length < 110 ? `${p.summary} Video production by 12 Acre Films in Spokane, WA.` : p.summary;
+const description = (p as any).metaDescription ?? (p.summary.length < 110 ? `${p.summary} Video production by 12 Acre Films in Spokane, WA.` : p.summary);
 const embed = p.muxEmbed || p.framerateEmbed;
 const schema: object[] = [
   {
@@ -59,6 +59,7 @@ if (embed && (p as any).uploadDate) {
       )}
 
       <p class="muted" style="font-size:1.1rem">{p.summary}</p>
+      {((p as any).body as string[] | undefined)?.map((para) => <p>{para}</p>)}
       {!(p.muxEmbed || p.framerateEmbed) && p.watchUrl && <p><a class="btn" href={p.watchUrl} rel="noopener">Watch</a></p>}
       <p style="margin-top:36px"><a class="btn ghost" href="/contact">Start your project</a></p>
     </div>
