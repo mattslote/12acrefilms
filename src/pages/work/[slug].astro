@@ -51,6 +51,13 @@ if (embed && (p as any).uploadDate) {
         <img src={p.image} alt={p.title} {...dims(p.image)} fetchpriority="high" decoding="async" style="border-radius:10px;margin:28px 0" />
       )}
 
+      {(p as any).showcase && (
+        <div style="margin:8px 0 28px">
+          <h2 style="margin:0 0 12px">More videos</h2>
+          <iframe src={(p as any).showcase} title={`${p.title}: more videos`} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="display:block;width:100%;height:min(80vw,560px);border:0;border-radius:10px"></iframe>
+        </div>
+      )}
+
       <p class="muted" style="font-size:1.1rem">{p.summary}</p>
       {!(p.muxEmbed || p.framerateEmbed) && p.watchUrl && <p><a class="btn" href={p.watchUrl} rel="noopener">Watch</a></p>}
       <p style="margin-top:36px"><a class="btn ghost" href="/contact">Start your project</a></p>
