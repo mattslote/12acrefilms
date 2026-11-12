@@ -23,7 +23,7 @@ export const services: Service[] = [
     eyebrow: 'Live streaming · Live events · Event videography',
     h1: 'Live stream & live event video production in Spokane',
     metaTitle: 'Live Stream & Event Videography in Spokane',
-    description: 'Professional live streaming and live event videography in Spokane, WA. Multi-camera conferences, galas, speaker events and webinars streamed to YouTube, Facebook, LinkedIn or your website, plus recording and highlight edits.',
+    description: 'Multi-camera live streaming for conferences, galas and speaker events in Spokane, WA. Stream to YouTube, Facebook or LinkedIn, plus a recording.',
     lead: "Your event, on screen for everyone who couldn't be in the room. 12 Acre Films provides professional live streaming, multi-camera event videography, and recording for businesses, nonprofits, schools, and organizations across Spokane and the Inland Northwest.",
     cta: 'Get a live event quote',
     sections: [
@@ -99,7 +99,7 @@ export const services: Service[] = [
     eyebrow: 'Funeral live streaming · Memorial recording',
     h1: 'Funeral live streaming & recording in Spokane',
     metaTitle: 'Funeral Live Streaming in Spokane, WA',
-    description: 'Respectful funeral and memorial service live streaming and recording in Spokane, WA. Private links for family who cannot travel, discreet setup, and a recording to keep. Call 509.339.5227.',
+    description: 'Respectful funeral and memorial live streaming in Spokane, WA. Private links for family who cannot travel, discreet setup and a recording to keep.',
     lead: "When loved ones can't travel, they can still be there. We quietly live stream and record funerals, memorial services, and celebrations of life, so everyone who wants to be present can be.",
     cta: 'Send a message',
     gentle: true,
@@ -173,7 +173,7 @@ export const services: Service[] = [
     eyebrow: 'Teleprompter operator · Presidential prompters · Speeches · Video shoots',
     h1: 'Teleprompter operator in Spokane',
     metaTitle: 'Teleprompter Operator in Spokane, WA',
-    description: 'Experienced teleprompter operator in Spokane, WA with a 17-inch two-way mirror prompter and presidential prompter experience. For corporate videos, executive messages, speeches, commercials, conferences and live events.',
+    description: 'Teleprompter operator in Spokane, WA with a 17-inch two-way mirror prompter and presidential prompter experience, for corporate video, speeches and live events.',
     lead: "A teleprompter is only as good as the person running it. A skilled operator follows your speaker at their pace, makes script changes on the fly, and keeps the shoot moving, so your talent can sound natural and confident. I bring a 17-inch two-way mirror prompter, and I have operated presidential prompters for speeches and events.",
     cta: 'Book a teleprompter operator',
     sections: [
@@ -257,7 +257,7 @@ export const services: Service[] = [
     eyebrow: 'Commercial video · Corporate video · Brand video',
     h1: 'Commercial & corporate video production in Spokane',
     metaTitle: 'Commercial & Corporate Video in Spokane, WA',
-    description: 'Spokane commercial and corporate video production for marketing, brand, training and web. Professional production quality without the big agency price tag. Serving Spokane and the Inland Northwest.',
+    description: 'Spokane commercial and corporate video for marketing, brand, training and web. Professional quality without the big agency price tag.',
     lead: "Your digital first impression is important. 12 Acre Films helps you get the right images in front of the right eyes at the right time, with commercial and corporate video built around your goals, your audience, and your budget.",
     cta: 'Start a conversation',
     sections: [
@@ -309,7 +309,7 @@ export const services: Service[] = [
     eyebrow: 'Nonprofit video · Fundraising video · Capital campaigns',
     h1: 'Nonprofit & fundraising video production in Spokane',
     metaTitle: 'Nonprofit Fundraising Video in Spokane',
-    description: 'Spokane nonprofit video production: fundraising videos, capital campaign films, gala videos and impact stories that move donors. ADDY Award-winning nonprofit work.',
+    description: 'Spokane nonprofit video: fundraising videos, capital campaign films, gala videos and impact stories that move donors. ADDY Award-winning work.',
     lead: 'Donors give to stories, not statistics. 12 Acre Films produces documentary-style nonprofit video that shares the people behind your mission, in a way that moves viewers to act.',
     cta: 'Talk about your campaign',
     sections: [
@@ -354,7 +354,7 @@ export const services: Service[] = [
     eyebrow: 'Interview video · Testimonial video · Documentary style',
     h1: 'Interview & testimonial video production in Spokane',
     metaTitle: 'Interview & Testimonial Video in Spokane',
-    description: 'Documentary-style interview and customer testimonial videos in Spokane, WA. Build trust and engagement by sharing real stories from your customers, team and community.',
+    description: 'Documentary-style interview and customer testimonial videos in Spokane, WA. Build trust with real stories from your customers, team and community.',
     lead: 'Real people talking about real experiences is some of the most trusted content there is. We produce documentary-style interviews and testimonial videos that share personality, build trust, and increase engagement.',
     cta: 'Plan an interview shoot',
     sections: [
@@ -397,7 +397,7 @@ export const services: Service[] = [
     eyebrow: 'Social media video · Short-form · Content creation',
     h1: 'Social media video content in Spokane',
     metaTitle: 'Social Media Videographer in Spokane, WA',
-    description: 'Spokane social media videographer: short-form video and photography for Instagram, Facebook, LinkedIn, TikTok and YouTube. Efficient shoot days that produce weeks of content for your brand.',
+    description: 'Spokane social media videographer: short-form video for Instagram, Facebook, LinkedIn, TikTok and YouTube. Efficient shoot days that yield weeks of content.',
     lead: 'Consistent video content keeps your brand in front of your audience. We plan efficient shoot days that produce a library of social media videos and photos you can post for weeks.',
     cta: 'Plan your content',
     sections: [
@@ -454,7 +454,7 @@ export const services: Service[] = [
     eyebrow: 'Podcast production · Video podcasts · Audio podcasts',
     h1: 'Podcast production & recording in Spokane',
     metaTitle: 'Podcast Production in Spokane, WA',
-    description: 'Podcast production in Spokane, WA: multi-camera video podcasts, audio-only recording, editing, show clips and on-location studio setups for businesses, nonprofits and creators.',
+    description: 'Podcast production in Spokane, WA: multi-camera video podcasts, audio recording, editing, show clips and on-location setups for businesses and creators.',
     lead: 'A podcast is one of the best ways to build an audience and a reputation. We bring cameras, lights, and studio-quality microphones, then record, edit, and package your show so you can focus on the conversation.',
     cta: 'Plan your podcast',
     sections: [
@@ -508,7 +508,7 @@ export const services: Service[] = [
     eyebrow: 'Camera rental · Lighting rental · Audio rental',
     h1: 'Video camera & gear rental in Spokane',
     metaTitle: 'Video Gear Rental in Spokane, WA',
-    description: 'Rent cinema cameras, lenses, lighting, grip and audio gear in Spokane, WA. Panasonic, Blackmagic, Sony, Aputure, KinoFlo and more from a working production company.',
+    description: 'Rent cinema cameras, lenses, lighting, grip and audio gear in Spokane, WA. Panasonic, Blackmagic, Sony, Aputure and more from a working production company.',
     lead: 'The gear on our production days is gear you can rent. Cameras, lenses, lighting, grip, and audio, all owned and maintained by a working production company in Spokane.',
     cta: 'Ask about a rental',
     sections: [
@@ -550,7 +550,7 @@ export const services: Service[] = [
     eyebrow: 'TV commercials · Web commercials · Ad production',
     h1: 'TV & web commercial production in Spokane',
     metaTitle: 'TV Commercial Production in Spokane',
-    description: 'Spokane commercial production company: 15, 30 and 60-second TV, streaming and online commercials. Concept, scripting, shooting and editing for local and regional advertisers.',
+    description: 'Spokane commercial production: 15, 30 and 60-second TV, streaming and online commercials. Concept, scripting, shooting and editing for local advertisers.',
     lead: 'A good commercial earns attention in seconds. 12 Acre Films produces TV, streaming, and online commercials for local and regional advertisers, with professional production quality and without the big agency price tag.',
     cta: 'Get a commercial quote',
     sections: [
@@ -712,7 +712,7 @@ export const services: Service[] = [
     "eyebrow": "Digitization \u00b7 Archival media \u00b7 Preserve your memories",
     "h1": "Archival media digitization in Spokane",
     "metaTitle": "Photo, Film & Video Digitizing in Spokane",
-    "description": "Convert VHS and U-matic tapes, photo prints, film slides, 35mm and medium format film, DVDs and CDs to digital in Spokane, WA. Preserve your family and organizational memories before they fade.",
+    "description": "Digitize VHS and U-matic tapes, photos, slides, 35mm and medium format film, DVDs and CDs in Spokane, WA. Save your memories before the media fades.",
     "lead": "Tapes degrade, film fades, and discs fail. 12 Acre Films digitizes your archival media (VHS and U-matic tapes, photo prints, film slides, 35mm and medium format film, DVDs, and CDs) so your memories are saved, shareable, and safe.",
     "cta": "Get a digitizing quote",
     "sections": [
@@ -822,7 +822,7 @@ export const audiences: Service[] = [
     eyebrow: 'Small business video · Spokane',
     h1: 'Video production for small businesses in Spokane',
     metaTitle: 'Small Business Video Production in Spokane',
-    description: 'Spokane small business video production: brand videos, testimonials, social media content and commercials with professional quality and a small-business-friendly price tag.',
+    description: 'Spokane small business video: brand videos, testimonials, social content and commercials with professional quality at a small-business price.',
     lead: "You are good at running a business, not at video production, and that is fine. 12 Acre Films works with small business owners to make professional video that fits your goals and your budget, without the big agency price tag.",
     cta: 'Start a conversation',
     sections: [
@@ -876,7 +876,7 @@ export const audiences: Service[] = [
     eyebrow: 'Startup video · Launch · Pitch · Product',
     h1: 'Video production for startups in Spokane',
     metaTitle: 'Startup Video Production in Spokane, WA',
-    description: 'Startup video production in Spokane, WA: launch videos, pitch and investor videos, product demos, explainers and founder stories. Look credible fast, on a startup budget.',
+    description: 'Startup video in Spokane, WA: launch, pitch and investor videos, product demos, explainers and founder stories. Look credible fast, on a startup budget.',
     lead: 'Startups have to look credible before they have a track record. A clear, well-made video can explain what you do in 90 seconds, win a meeting, and give your launch some weight.',
     cta: 'Talk about your launch',
     sections: [
@@ -932,7 +932,7 @@ export const audiences: Service[] = [
     eyebrow: 'Nonprofit video · Mission-driven organizations',
     h1: 'Video production for nonprofits in Spokane',
     metaTitle: 'Video Production for Nonprofits in Spokane',
-    description: 'Video for Spokane nonprofits: donor stories, program videos, volunteer recruitment, events and grant support. Award-winning nonprofit work, planned around your budget and your team.',
+    description: 'Video for Spokane nonprofits: donor stories, program videos, volunteer recruitment and events. Award-winning work planned around your budget.',
     lead: "Nonprofits do more with less, and video should too. We help mission-driven organizations in Spokane and the Inland Northwest tell their stories honestly, reach donors and volunteers, and make the most of every dollar spent on production.",
     cta: 'Talk about your mission',
     sections: [
@@ -987,7 +987,7 @@ export const audiences: Service[] = [
     eyebrow: 'Corporate video · Brand · Training · Executive communications',
     h1: 'Corporate video production for companies and agencies in Spokane',
     metaTitle: 'Corporate Video for Companies in Spokane',
-    description: 'Corporate video for Spokane companies, agencies and government contractors: brand films, training, executive messages, events and live streaming, delivered on schedule by a documentary-trained team.',
+    description: 'Corporate video for Spokane companies, agencies and government contractors: brand films, training, executive messages and live events.',
     lead: "Corporate teams need a production partner who is easy to work with, communicates clearly, and delivers on time. 12 Acre Films has produced video for federal agencies, state departments, universities, and growing companies across the Inland Northwest.",
     cta: 'Talk about your project',
     sections: [
@@ -1037,7 +1037,7 @@ export const formats: Service[] = [
     "eyebrow": "VHS to digital \u00b7 Home video transfer \u00b7 Tape digitizing",
     "h1": "VHS to digital video transfer in Spokane",
     "metaTitle": "VHS to Digital Transfer in Spokane, WA",
-    "description": "Convert VHS home videos to digital in Spokane, WA. Save birthdays, weddings, holidays and family moments from aging tapes as digital files you can watch, share and back up.",
+    "description": "Convert VHS home movies to digital files in Spokane, WA. Save birthdays, weddings and holidays from aging tapes, ready to watch, share and back up.",
     "lead": "Your family's home videos are stored on magnetic tape, and tape does not last forever. We transfer your VHS tapes to digital files so birthdays, weddings, holidays, and everyday moments are saved and easy to share.",
     "cta": "Get a digitizing quote",
     "sections": [
@@ -1348,7 +1348,7 @@ export const formats: Service[] = [
     "eyebrow": "Medium format film \u00b7 120 film scanning \u00b7 Large-negative scanning",
     "h1": "Medium format film scanning in Spokane",
     "metaTitle": "Medium Format Film Scanning in Spokane",
-    "description": "Medium format film scanning in Spokane, WA: digitize 120 roll film negatives and transparencies into high-resolution digital images for photographers and families.",
+    "description": "Medium format film scanning in Spokane, WA: digitize 120 roll film negatives and transparencies into high-resolution images for photographers and families.",
     "lead": "Medium format film is prized for its detail and quality. We scan your medium format negatives and transparencies into digital images that do justice to the original.",
     "cta": "Get a digitizing quote",
     "sections": [
@@ -1502,7 +1502,7 @@ export const formats: Service[] = [
   "eyebrow": "U-matic 3/4 inch \u00b7 Professional videotape \u00b7 Tape digitizing",
   "h1": "U-matic 3/4-inch tape to digital in Spokane",
   "metaTitle": "U-matic Tape to Digital Transfer in Spokane",
-  "description": "Transfer U-matic 3/4-inch videotape to digital files in Spokane, WA. Preserve broadcast, school, church, corporate and archival footage from aging professional tapes.",
+  "description": "Transfer U-matic 3/4-inch videotape to digital in Spokane, WA. Preserve broadcast, school, church and corporate footage from aging professional tapes.",
   "lead": "U-matic 3/4-inch tape was a professional workhorse for decades, and many organizations still have boxes of it on a shelf. We transfer your U-matic tapes to digital files, so the footage on them is preserved and usable again.",
   "cta": "Get a digitizing quote",
   "sections": [
